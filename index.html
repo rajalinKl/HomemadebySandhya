@@ -96,4 +96,357 @@
         /* Modal Overlay */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(30,28,27,0.65); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 1rem; }
         .modal-content { background: white; width: 100%; max-width: 480px; padding: 2rem 1.5rem; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); position: relative; max-height: 90vh; overflow-y: auto; }
-        .close-modal { position: absolute; top: 18px; right: 18px; background: #F3EFEA; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 0.9rem; color: var(--text-dark
+        .close-modal { position: absolute; top: 18px; right: 18px; background: #F3EFEA; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 0.9rem; color: var(--text-dark); }
+
+        /* Footer */
+        footer { background: var(--text-dark); color: white; text-align: center; padding: 3rem 5%; margin-top: 5rem; }
+        footer a { color: #E8D3C8; text-decoration: none; }
+
+        /* Media Queries for Desktop and Tablets */
+        @media(min-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero { padding: 6rem 6% 5rem; }
+            .col-span-8 { grid-column: span 8; }
+            .col-span-4 { grid-column: span 4; }
+            .col-span-6 { grid-column: span 6; }
+            .col-span-3 { grid-column: span 3; }
+            .bespoke-wrapper { padding: 4rem; }
+            .bespoke-grid { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
+            .modal-content { padding: 2.5rem; }
+            .section-header h2 { font-size: 2.3rem; }
+        }
+        
+        @media(max-width: 767px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-area">
+            <img src="image_86130d.jpg" alt="Homemade by Sandhya Logo" class="logo-img">
+            <div class="logo-text-group">
+                <span class="logo-title">Homemade by Sandhya</span>
+                <span class="logo-subtitle">Catering Planner</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#weekly-menu">Weekly Menu</a></li>
+            <li><a href="#party-menu">Party Menu</a></li>
+            <li><a href="#bespoke-section">Custom</a></li>
+            <li><a href="https://www.instagram.com/homemadebysandhya?igsi=d3Y5M29oNDI3OWJt" target="_blank" class="insta-badge">📸 Instagram</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Soulful Home Cooking & Bespoke Confectionery</h1>
+        <p>Specialised in exquisite party catering, authentic regional biryanis, artisan bakes, and handcrafted treats.</p>
+        <div class="hero-btns">
+            <a href="#weekly-menu" class="btn-primary">Order Weekly Menu</a>
+            <a href="#bespoke-section" class="btn-secondary">Plan a Party Order</a>
+        </div>
+    </header>
+
+    <div class="notice-banner">
+        ⚠️ Note: Weekly menu items require ordering at least 2 days in advance. Delivery charges calculated separately based on Grab rates.
+    </div>
+
+    <main class="container" id="weekly-menu">
+        <div class="section-header">
+            <div>
+                <span style="color: var(--primary-terracotta); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Fresh Weekly Batch</span>
+                <h2>Weekly Pre-Order Menu</h2>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">🗓️ 2 Days Notice Required</span>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap">
+                    <span class="badge terracotta">Weekly Special</span>
+                    <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80" alt="Homestyle Comfort Thali">
+                </div>
+                <div class="bento-content">
+                    <div>
+                        <h3 class="item-title">Homestyle Comfort Thali Box</h3>
+                        <p class="item-desc">Slow-cooked seasonal main, two daily sides, aromatic basmati rice, and warm soft roti.</p>
+                    </div>
+                    <div class="card-footer-flex">
+                        <div class="price-tag">RM 28.00</div>
+                        <button class="order-btn" onclick="openCheckout('Homestyle Comfort Thali Box', 28.00)">Pre-Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap">
+                    <span class="badge">Weekend Special</span>
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Spice-Rubbed Roast">
+                </div>
+                <div class="bento-content">
+                    <div>
+                        <h3 class="item-title">Spice-Rubbed Roast Chicken</h3>
+                        <p class="item-desc">Marinated for 24 hours in Sandhya's signature secret herb blend and oven-roasted.</p>
+                    </div>
+                    <div class="card-footer-flex">
+                        <div class="price-tag">RM 45.00</div>
+                        <button class="order-btn" onclick="openCheckout('Spice-Rubbed Roast Chicken', 45.00)">Pre-Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap">
+                    <span class="badge terracotta">Fresh Bake</span>
+                    <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" alt="Sourdough Loaf">
+                </div>
+                <div class="bento-content">
+                    <div>
+                        <h3 class="item-title">Artisan Country Sourdough</h3>
+                        <p class="item-desc">Natural 36-hour slow fermentation with a crackling crust and airy open crumb.</p>
+                    </div>
+                    <div class="card-footer-flex">
+                        <div class="price-tag">RM 25.00</div>
+                        <button class="order-btn" onclick="openCheckout('Artisan Country Sourdough Loaf', 25.00)">Pre-Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="container" id="party-menu">
+        <div class="section-header">
+            <div>
+                <span style="color: var(--primary-terracotta); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Celebration Spreads</span>
+                <h2>Full Party & Catering Menu</h2>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">🎉 For parties & events</span>
+        </div>
+
+        <h3 class="section-category-title">🍰 Cakes & Sweet Confections</h3>
+        <div class="bento-grid">
+            <div class="bento-card col-span-3">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=500&q=80" alt="Fondant Cake"></div>
+                <div class="bento-content">
+                    <div><span class="badge terracotta">Custom Art</span><h3 class="item-title" style="font-size: 1.1rem;">Custom Fondant Cakes</h3><p class="item-desc" style="font-size: 0.8rem;">Sculpted sugar art tailored to your exact celebration theme.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">From RM 200</div><button class="order-btn" onclick="openCheckout('Custom Fondant Cake', 200.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-3">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=500&q=80" alt="Fruit Cake"></div>
+                <div class="bento-content">
+                    <div><span class="badge">Fresh Fruit</span><h3 class="item-title" style="font-size: 1.1rem;">Fruit Cakes & Shortcakes</h3><p class="item-desc" style="font-size: 0.8rem;">Moist sponge layered with fresh cream and seasonal fruits.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">RM 110.00</div><button class="order-btn" onclick="openCheckout('Artisan Fruit Cake', 110.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-3">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=500&q=80" alt="Tres Leches"></div>
+                <div class="bento-content">
+                    <div><span class="badge terracotta">Signature</span><h3 class="item-title" style="font-size: 1.1rem;">Tres Leches & Jelly Cakes</h3><p class="item-desc" style="font-size: 0.8rem;">Saffron/Biscoff tres leches trays and clear jelly cakes.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">RM 95.00</div><button class="order-btn" onclick="openCheckout('Tres Leches / Jelly Cake Tray', 95.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-3">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80" alt="Chocolate Cakes"></div>
+                <div class="bento-content">
+                    <div><span class="badge">Decadent</span><h3 class="item-title" style="font-size: 1.1rem;">Chocolate & Cookies</h3><p class="item-desc" style="font-size: 0.8rem;">Belgian fudge cakes, cake popsicles, and sugar cookies.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">RM 120.00</div><button class="order-btn" onclick="openCheckout('Chocolate Cake / Cookies Party Pack', 120.00)">Select</button></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-category-title">🍢 Party Appetizers & Platters</h3>
+        <div class="bento-grid">
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=80" alt="Party Platters"></div>
+                <div class="bento-content">
+                    <div><span class="badge">Platters</span><h3 class="item-title">Cheese Domes & Platters</h3><p class="item-desc">Curated artisan cheese boards, gourmet crackers, dips, chips, and grazing spreads.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 150.00</div><button class="order-btn" onclick="openCheckout('Gourmet Cheese Platter & Dips', 150.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1621996346565-e3d5d6281298?auto=format&fit=crop&w=500&q=80" alt="Pasta"></div>
+                <div class="bento-content">
+                    <div><span class="badge terracotta">Hot Bites</span><h3 class="item-title">Baked Pasta & Poppers</h3><p class="item-desc">Creamy baked pasta trays, crispy chicken nuggets, and gooey cheese poppers.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 90.00</div><button class="order-btn" onclick="openCheckout('Baked Pasta & Hot Poppers Tray', 90.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80" alt="Wraps"></div>
+                <div class="bento-content">
+                    <div><span class="badge">Finger Food</span><h3 class="item-title">Gourmet Party Wraps</h3><p class="item-desc">Sliced tortilla wraps and stuffed rolls loaded with fresh fillings and sauces.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 80.00</div><button class="order-btn" onclick="openCheckout('Gourmet Party Wraps Platter', 80.00)">Select</button></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-category-title"> Chaat & Indian Street Snacks</h3>
+        <div class="bento-grid">
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80" alt="Chole Kulcha"></div>
+                <div class="bento-content">
+                    <div><span class="badge">Street Food</span><h3 class="item-title">Chole Kulcha Station</h3><p class="item-desc">Spiced tangy chickpea curry served with fluffy, butter-toasted soft kulchas.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 85.00</div><button class="order-btn" onclick="openCheckout('Chole Kulcha Party Tray', 85.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=500&q=80" alt="Pani Puri"></div>
+                <div class="bento-content">
+                    <div><span class="badge terracotta">Interactive</span><h3 class="item-title">DIY Pani Puri Bar</h3><p class="item-desc">Crispy puris, potato filling, sweet tamarind chutney, and chilled mint water.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 95.00</div><button class="order-btn" onclick="openCheckout('DIY Pani Puri Bar Set', 95.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-4">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=500&q=80" alt="Vada Pav"></div>
+                <div class="bento-content">
+                    <div><span class="badge">Oven Baked</span><h3 class="item-title">Baked Vada Pav Sliders</h3><p class="item-desc">Healthy oven-baked potato fritter sliders tucked in soft buns with garlic chutney.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 75.00</div><button class="order-btn" onclick="openCheckout('Baked Vada Pav Platter', 75.00)">Select</button></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-category-title">🍛 Signature Biryanis (All Styles)</h3>
+        <div class="bento-grid">
+            <div class="bento-card col-span-6">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Dum Biryani"></div>
+                <div class="bento-content">
+                    <div><span class="badge terracotta">Royal Classic</span><h3 class="item-title">Chicken / Mutton Dum Biryani</h3><p class="item-desc">Long-grain basmati rice layered with succulent tender meat, saffron, and slow-cooked in a sealed pot.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 130.00 (Large Pot)</div><button class="order-btn" onclick="openCheckout('Signature Dum Biryani Pot', 130.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-6">
+                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=600&q=80" alt="Veg Biryani"></div>
+                <div class="bento-content">
+                    <div><span class="badge">Vegetarian</span><h3 class="item-title">Shahi Paneer & Veg Biryani</h3><p class="item-desc">Aromatic rice loaded with marinated paneer cubes, garden vegetables, fried onions, and mint.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 110.00 (Large Pot)</div><button class="order-btn" onclick="openCheckout('Shahi Veg Biryani Pot', 110.00)">Select</button></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="container" id="bespoke-section">
+        <div class="bespoke-wrapper">
+            <div class="bespoke-grid">
+                <div>
+                    <span style="color: var(--primary-terracotta); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Fully Tailored</span>
+                    <h2 style="font-size: 2rem; margin: 0.5rem 0 1rem 0;">Bespoke Catering Builder</h2>
+                    <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                        Want something specific that isn't on the menu? Choose items from above OR suggest your own custom dishes, theme requests, or dietary preferences. Sandhya will personally design a bespoke order and quotation for you.
+                    </p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-weight: 500; font-size: 0.9rem;">
+                        <li>✨ Customized menus tailored to your guest count</li>
+                        <li>🎨 Theme decoration & fondant cake matching</li>
+                        <li>🌿 Vegetarian and allergy-friendly adjustments</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 2rem 1.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.04);">
+                    <h3 style="margin-bottom: 1.2rem; font-size: 1.3rem;">Submit Custom Catering Request</h3>
+                    <form onsubmit="event.preventDefault(); alert('Your bespoke catering request has been submitted successfully! Sandhya will WhatsApp you with a custom quotation shortly.');">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" placeholder="Enter full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone / WhatsApp Number</label>
+                            <input type="text" placeholder="+60 17-444 2997" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Event Date & Headcount</label>
+                            <input type="text" placeholder="e.g. 15th Sept, 40 Guests" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Menu Items / Custom Requests</label>
+                            <textarea rows="3" placeholder="List items or describe custom dish ideas..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; text-align: center; margin-top: 0.5rem;">Request Custom Quotation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <h3>Secure Order Gateway</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Review your order and select fulfillment options.</p>
+            
+            <div id="modalSummary" style="background: var(--bg-cream); padding: 1rem; border-radius: 12px; margin: 1.2rem 0; font-size: 0.9rem;"></div>
+
+            <div class="form-group">
+                <label>Fulfillment Preference</label>
+                <select id="fulfillment" onchange="toggleAddressField()">
+                    <option value="pickup">Store Pickup (Free)</option>
+                    <option value="delivery">Home Delivery (Extra charges based on Grab rates)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="addressGroup" style="display: none;">
+                <label>Delivery Address</label>
+                <textarea id="deliveryAddress" rows="2" placeholder="Enter full delivery address..."></textarea>
+                <small style="color: var(--primary-terracotta); font-size: 0.75rem;">*Delivery fee calculated via Grab courier charges and billed separately.</small>
+            </div>
+
+            <div class="form-group">
+                <label>Contact Number / WhatsApp</label>
+                <input type="text" placeholder="+60 17-444 2997">
+            </div>
+
+            <button class="btn-primary" style="width: 100%; border: none; cursor: pointer; margin-top: 0.5rem;" onclick="processPayment()">Proceed to Secure Payment</button>
+        </div>
+    </div>
+
+    <footer>
+        <img src="image_86130d.jpg" alt="Logo" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 1.5px solid var(--primary-terracotta); box-shadow: 0 4px 15px rgba(216,122,94,0.3); background:#fff;">
+        <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.3rem;">Homemade by Sandhya</p>
+        <p style="color: #A09B9C; font-size: 0.85rem;">Party & catering planner | Biryani, cakes, desserts & appetizers.</p>
+        <p style="margin-top: 1.2rem; font-size: 0.8rem;">WhatsApp: <a href="https://wa.me/60174442997" target="_blank">+60 17-444 2997</a> | Instagram: <a href="https://www.instagram.com/homemadebysandhya?igsi=d3Y5M29oNDI3OWJt" target="_blank">@homemadebysandhya</a></p>
+    </footer>
+
+    <script>
+        let currentItem = "";
+        let currentPrice = 0;
+
+        function openCheckout(name, price) {
+            currentItem = name;
+            currentPrice = price;
+            document.getElementById('modalSummary').innerHTML = `<strong>Selected Item:</strong> ${name}<br><strong>Price:</strong> RM ${price.toFixed(2)}<br><small style="color:var(--primary-terracotta); font-weight:600;">⚠️ Reminder: Weekly orders require 2 days advance notice.</small>`;
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        function toggleAddressField() {
+            const method = document.getElementById('fulfillment').value;
+            const addressGroup = document.getElementById('addressGroup');
+            if (method === 'delivery') {
+                addressGroup.style.display = 'block';
+            } else {
+                addressGroup.style.display = 'none';
+            }
+        }
+
+        function processPayment() {
+            const method = document.getElementById('fulfillment').value;
+            const address = document.getElementById('deliveryAddress').value;
+            
+            if (method === 'delivery' && !address.trim()) {
+                alert('Please enter your delivery address.');
+                return;
+            }
+
+            alert(`Redirecting securely to payment gateway (FPX / DuitNow QR / Cards)...\n\nItem: ${currentItem}\nFulfillment: ${method.toUpperCase()}\nBase Total: RM ${currentPrice.toFixed(2)}${method === 'delivery' ? '\n(Note: Grab delivery charges will be calculated and added separately).' : ''}`);
+            closeModal();
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('checkoutModal');
+            if (event.target === modal) closeModal();
+        }
+    </script>
+</body>
+</html>
