@@ -34,17 +34,19 @@
         .nav-links a:hover { color: var(--primary-pink); }
         .insta-badge { background: var(--pastel-blush); padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--primary-pink); text-decoration: none; border: 1px solid rgba(217,136,149,0.25); white-space: nowrap; }
 
-        /* Luxury Hero Section with Background Image & Pastel Overlay */
+        /* Fixed Luxury Hero Section with Explicit Background Image */
         .hero { 
             position: relative;
-            padding: 6rem 5% 5.5rem; 
+            padding: 7rem 5% 6rem; 
             text-align: center; 
-            background: linear-gradient(rgba(44, 38, 40, 0.65), rgba(107, 168, 163, 0.7)), url('https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=1920&q=85') no-repeat center center/cover;
+            background-image: linear-gradient(rgba(44, 38, 40, 0.65), rgba(107, 168, 163, 0.75)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=85');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: white;
-            background-attachment: fixed;
         }
-        .hero h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .hero p { font-size: 1.1rem; color: #F7F1F3; max-width: 650px; margin: 0 auto 2.5rem; font-weight: 300; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .hero p { font-size: 1.1rem; color: #F7F1F3; max-width: 650px; margin: 0 auto 2.5rem; font-weight: 300; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
         .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         
         .btn-primary { background: var(--primary-pink); color: white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(217,136,149,0.4); display: inline-block; text-align: center; transition: background 0.2s; }
@@ -96,7 +98,7 @@
 
         @media(min-width: 768px) {
             .hero h1 { font-size: 3.5rem; }
-            .hero { padding: 7rem 6% 6rem; }
+            .hero { padding: 8rem 6% 7rem; }
             .col-span-4 { grid-column: span 4; }
             .col-span-6 { grid-column: span 6; }
             .col-span-3 { grid-column: span 3; }
@@ -184,14 +186,4 @@
                 </div>
                 
                 <div style="background: white; padding: 2rem 1.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.04);">
-                    <h3 style="margin-bottom: 1.2rem; font-size: 1.3rem;">Submit Custom Catering Request</h3>
-                    <form onsubmit="event.preventDefault(); alert('Your bespoke catering request has been submitted successfully! Sandhya will WhatsApp you with a custom quotation shortly.');">
-                        <div class="form-group">
-                            <label>Your Name</label>
-                            <input type="text" placeholder="Enter full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone / WhatsApp Number</label>
-                            <input type="text" placeholder="+60 17-444 2997" required>
-                        </div>
-                        <div class="form-group">
+                    <h3 style="margin-bottom
