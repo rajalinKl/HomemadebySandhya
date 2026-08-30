@@ -8,13 +8,18 @@ public_folder: "/images/uploads"
 collections:
   - name: "menu"
     label: "Menu Items"
-    folder: "content/menu"
-    create: true
-    format: "json"
-    fields:
-      - {label: "Item Name", name: "Name", widget: "string"}
-      - {label: "Category", name: "Category", widget: "select", options: ["Weekly Menu", "Cakes & Sweet Confections", "Party Appetizers", "Street Snacks", "Signature Biryanis"]}
-      - {label: "Price (RM)", name: "Price", widget: "number", value_type: "float"}
-      - {label: "Description", name: "Description", widget: "text"}
-      - {label: "Dish Image", name: "Image", widget: "string"}
-      - {label: "Weekly Special Active?", name: "IsWeekly", widget: "boolean", default: false}
+    files:
+      - file: "menu.json"
+        label: "Current Site Menu"
+        name: "menu_items"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Category", name: "Category", widget: "select", options: ["Weekly Menu", "Cakes & Sweet Confections", "Party Appetizers", "Street Snacks", "Signature Biryanis"]}
+              - {label: "Item Name", name: "Name", widget: "string"}
+              - {label: "Description", name: "Description", widget: "text"}
+              - {label: "Price (RM)", name: "Price", widget: "number", value_type: "float"}
+              - {label: "Dish Image URL", name: "Image", widget: "string"}
+              - {label: "Weekly Special Active?", name: "IsWeekly", widget: "string"}
