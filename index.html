@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homemade by Sandhya | Party & Catering Planner</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-pink-cream: #FAF2F5;
@@ -20,14 +19,14 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-pink-cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; scroll-behavior: smooth; }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-pink-cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; scroll-behavior: smooth; }
+        h1, h2, h3, h4 { font-family: Georgia, serif; }
 
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 4%; background: rgba(250, 242, 245, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(217, 136, 149, 0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 4%; background: rgba(250, 242, 245, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(217, 136, 149, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
         .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-pink); background-color: #fff; flex-shrink: 0; box-shadow: 0 3px 10px rgba(217,136,149,0.25); }
+        .logo-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-pink); background-color: #fff; flex-shrink: 0; }
         .logo-text-group { display: flex; flex-direction: column; }
-        .logo-title { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); font-family: 'Playfair Display', serif; line-height: 1.1; }
+        .logo-title { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); font-family: Georgia, serif; line-height: 1.1; }
         .logo-subtitle { font-size: 0.65rem; color: var(--teal-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         
         .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
@@ -39,42 +38,39 @@
             position: relative;
             padding: 5rem 5% 4.5rem; 
             text-align: center; 
-            background: linear-gradient(rgba(44, 38, 40, 0.6), rgba(107, 168, 163, 0.45)), url('https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=1920&q=85') no-repeat center center/cover;
+            background: linear-gradient(135deg, rgba(217, 136, 149, 0.85), rgba(107, 168, 163, 0.85));
             color: white;
         }
-        .hero h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1.0rem; font-weight: 700; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .hero p { font-size: 1.05rem; color: #F7F1F3; max-width: 600px; margin: 0 auto 2rem; font-weight: 300; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+        .hero p { font-size: 1.05rem; color: #F7F1F3; max-width: 600px; margin: 0 auto 2rem; font-weight: 300; }
         .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         
-        .btn-primary { background: var(--primary-pink); color: white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(217,136,149,0.35); display: inline-block; text-align: center; transition: background 0.2s; }
+        .btn-primary { background: var(--primary-pink); color: white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(217,136,149,0.3); display: inline-block; text-align: center; transition: background 0.2s; }
         .btn-primary:hover { background: var(--primary-hover); }
-        .btn-secondary { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); color: white; border: 2px solid rgba(255,255,255,0.7); padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; cursor: pointer; display: inline-block; text-align: center; transition: background 0.2s; }
+        .btn-secondary { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; cursor: pointer; display: inline-block; text-align: center; transition: background 0.2s; }
         .btn-secondary:hover { background: white; color: var(--text-dark); }
 
         .notice-banner { background: var(--teal-light); border: 1px solid rgba(107, 168, 163, 0.35); padding: 12px 18px; border-radius: 16px; text-align: center; max-width: 90%; margin: -20px auto 3rem; font-size: 0.85rem; font-weight: 600; color: #436E6A; position: relative; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
 
         .container { max-width: 1300px; margin: 0 auto; padding: 1.5rem 4%; }
         .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; border-bottom: 1px solid rgba(217,136,149,0.15); padding-bottom: 0.8rem; flex-wrap: wrap; gap: 10px; }
-        .section-header h2 { font-size: 1.8rem; color: var(--text-dark); }
-        .section-category-title { font-size: 1.4rem; color: var(--text-dark); margin: 2.5rem 0 1.2rem 0; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(107,168,163,0.25); font-family: 'Playfair Display', serif; }
+        .section-header h2 { font-size: 1.8rem; color: var(--text-dark); font-family: Georgia, serif; }
+        .section-category-title { font-size: 1.4rem; color: var(--text-dark); margin: 2.5rem 0 1.2rem 0; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(107,168,163,0.25); font-family: Georgia, serif; }
 
         .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
         .col-span-12 { grid-column: span 12; }
-        .col-span-8 { grid-column: span 12; }
         .col-span-4 { grid-column: span 12; }
         .col-span-6 { grid-column: span 12; }
         .col-span-3 { grid-column: span 12; }
 
         .bento-card { background: var(--card-bg); border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.04); display: flex; flex-direction: column; position: relative; border: 1px solid rgba(217,136,149,0.1); }
-        .bento-img-wrap { position: relative; width: 100%; height: 200px; overflow: hidden; }
-        .bento-card.tall .bento-img-wrap { height: 240px; }
-        .bento-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .bento-img-placeholder { width: 100%; height: 180px; background: linear-gradient(135deg, #FDE8EC, #E6F2F1); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
 
         .bento-content { padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
         .badge { display: inline-block; background: var(--teal-accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem; width: fit-content; }
         .badge.pink { background: var(--primary-pink); }
 
-        .item-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .item-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem; font-family: Georgia, serif; }
         .item-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.2rem; }
 
         .card-footer-flex { display: flex; justify-content: space-between; align-items: center; margin-top: auto; width: 100%; gap: 10px; }
@@ -89,7 +85,7 @@
         .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: var(--text-dark); }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #D1C5C8; font-family: inherit; background: white; font-size: 0.95rem; }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44,38,40,0.65); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 1rem; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44,38,40,0.65); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 1rem; }
         .modal-content { background: white; width: 100%; max-width: 480px; padding: 2rem 1.5rem; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); position: relative; max-height: 90vh; overflow-y: auto; }
         .close-modal { position: absolute; top: 18px; right: 18px; background: #FAF2F5; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 0.9rem; color: var(--text-dark); }
 
@@ -97,16 +93,14 @@
         footer a { color: #F5C6CE; text-decoration: none; }
 
         @media(min-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
-            .hero { padding: 6rem 6% 5rem; }
-            .col-span-8 { grid-column: span 8; }
+            .hero h1 { font-size: 3.2rem; }
+            .hero { padding: 5rem 6% 4.5rem; }
             .col-span-4 { grid-column: span 4; }
             .col-span-6 { grid-column: span 6; }
             .col-span-3 { grid-column: span 3; }
             .bespoke-wrapper { padding: 4rem; }
             .bespoke-grid { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
             .modal-content { padding: 2.5rem; }
-            .section-header h2 { font-size: 2.3rem; }
         }
         
         @media(max-width: 767px) {
@@ -118,4 +112,166 @@
 
     <nav>
         <a href="#" class="logo-area">
-            <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.src='
+            <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-text-group">
+                <span class="logo-title">Homemade by Sandhya</span>
+                <span class="logo-subtitle">Catering Planner</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#weekly-menu">Weekly Menu</a></li>
+            <li><a href="#party-menu">Party Menu</a></li>
+            <li><a href="#bespoke-section">Custom</a></li>
+            <li><a href="https://www.instagram.com/homemadebysandhya?igsi=d3Y5M29oNDI3OWJt" target="_blank" class="insta-badge">📸 Instagram</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Soulful Home Cooking & Bespoke Confectionery</h1>
+        <p>Specialised in exquisite party catering, authentic regional biryanis, artisan bakes, and handcrafted treats.</p>
+        <div class="hero-btns">
+            <a href="#weekly-menu" class="btn-primary">Order Weekly Menu</a>
+            <a href="#bespoke-section" class="btn-secondary">Plan a Party Order</a>
+        </div>
+    </header>
+
+    <div class="notice-banner">
+        ⚠️ Note: Weekly menu items require ordering at least 2 days in advance. Delivery charges calculated separately based on Grab rates.
+    </div>
+
+    <main class="container" id="weekly-menu">
+        <div class="section-header">
+            <div>
+                <span style="color: var(--teal-accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Fresh Weekly Batch</span>
+                <h2>Weekly Pre-Order Menu</h2>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">🗓️ 2 Days Notice Required</span>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-card col-span-4">
+                <div class="bento-img-placeholder">🍱</div>
+                <div class="bento-content">
+                    <div>
+                        <span class="badge pink">Weekly Special</span>
+                        <h3 class="item-title">Homestyle Comfort Thali Box</h3>
+                        <p class="item-desc">Slow-cooked seasonal main, two daily sides, aromatic basmati rice, and warm soft roti.</p>
+                    </div>
+                    <div class="card-footer-flex">
+                        <div class="price-tag">RM 28.00</div>
+                        <button class="order-btn" onclick="openCheckout('Homestyle Comfort Thali Box', 28.00)">Pre-Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card col-span-4">
+                <div class="bento-img-placeholder">🍗</div>
+                <div class="bento-content">
+                    <div>
+                        <span class="badge">Weekend Special</span>
+                        <h3 class="item-title">Spice-Rubbed Roast Chicken</h3>
+                        <p class="item-desc">Marinated for 24 hours in Sandhya's signature secret herb blend and oven-roasted.</p>
+                    </div>
+                    <div class="card-footer-flex">
+                        <div class="price-tag">RM 45.00</div>
+                        <button class="order-btn" onclick="openCheckout('Spice-Rubbed Roast Chicken', 45.00)">Pre-Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card col-span-4">
+                <div class="bento-img-placeholder">🍞</div>
+                <div class="bento-content">
+                    <div>
+                        <span class="badge pink">Fresh Bake</span>
+                        <h3 class="item-title">Artisan Country Sourdough</h3>
+                        <p class="item-desc">Natural 36-hour slow fermentation with a crackling crust and airy open crumb.</p>
+                    </div>
+                    <div class="card-footer-flex">
+                        <div class="price-tag">RM 25.00</div>
+                        <button class="order-btn" onclick="openCheckout('Artisan Country Sourdough Loaf', 25.00)">Pre-Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="container" id="party-menu">
+        <div class="section-header">
+            <div>
+                <span style="color: var(--teal-accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Celebration Spreads</span>
+                <h2>Full Party & Catering Menu</h2>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">🎉 For parties & events</span>
+        </div>
+
+        <h3 class="section-category-title">🍰 Cakes & Sweet Confections</h3>
+        <div class="bento-grid">
+            <div class="bento-card col-span-3">
+                <div class="bento-img-placeholder">🎂</div>
+                <div class="bento-content">
+                    <div><span class="badge pink">Custom Art</span><h3 class="item-title" style="font-size: 1.1rem;">Custom Fondant Cakes</h3><p class="item-desc" style="font-size: 0.8rem;">Sculpted sugar art tailored to your celebration theme.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">From RM 200</div><button class="order-btn" onclick="openCheckout('Custom Fondant Cake', 200.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-3">
+                <div class="bento-img-placeholder">🍓</div>
+                <div class="bento-content">
+                    <div><span class="badge">Fresh Fruit</span><h3 class="item-title" style="font-size: 1.1rem;">Fruit Cakes & Shortcakes</h3><p class="item-desc" style="font-size: 0.8rem;">Moist sponge layered with fresh cream and seasonal fruits.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">RM 110.00</div><button class="order-btn" onclick="openCheckout('Artisan Fruit Cake', 110.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-3">
+                <div class="bento-img-placeholder">🍮</div>
+                <div class="bento-content">
+                    <div><span class="badge pink">Signature</span><h3 class="item-title" style="font-size: 1.1rem;">Tres Leches & Jelly Cakes</h3><p class="item-desc" style="font-size: 0.8rem;">Saffron/Biscoff tres leches trays and clear jelly cakes.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">RM 95.00</div><button class="order-btn" onclick="openCheckout('Tres Leches / Jelly Cake Tray', 95.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-3">
+                <div class="bento-img-placeholder">🍫</div>
+                <div class="bento-content">
+                    <div><span class="badge">Decadent</span><h3 class="item-title" style="font-size: 1.1rem;">Chocolate & Cookies</h3><p class="item-desc" style="font-size: 0.8rem;">Belgian fudge cakes, popsicles, and sugar cookies.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">RM 120.00</div><button class="order-btn" onclick="openCheckout('Chocolate Cake / Cookies Party Pack', 120.00)">Select</button></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-category-title">🍢 Party Appetizers & Platters</h3>
+        <div class="bento-grid">
+            <div class="bento-card col-span-4">
+                <div class="bento-img-placeholder">🧀</div>
+                <div class="bento-content">
+                    <div><span class="badge">Platters</span><h3 class="item-title">Cheese Domes & Platters</h3><p class="item-desc">Curated artisan cheese boards, gourmet crackers, dips, chips, and grazing spreads.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 150.00</div><button class="order-btn" onclick="openCheckout('Gourmet Cheese Platter & Dips', 150.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-4">
+                <div class="bento-img-placeholder">🍝</div>
+                <div class="bento-content">
+                    <div><span class="badge pink">Hot Bites</span><h3 class="item-title">Baked Pasta & Poppers</h3><p class="item-desc">Creamy baked pasta trays, crispy chicken nuggets, and gooey cheese poppers.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 90.00</div><button class="order-btn" onclick="openCheckout('Baked Pasta & Hot Poppers Tray', 90.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-4">
+                <div class="bento-img-placeholder">🌯</div>
+                <div class="bento-content">
+                    <div><span class="badge">Finger Food</span><h3 class="item-title">Gourmet Party Wraps</h3><p class="item-desc">Sliced tortilla wraps and stuffed rolls loaded with fresh fillings and sauces.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 80.00</div><button class="order-btn" onclick="openCheckout('Gourmet Party Wraps Platter', 80.00)">Select</button></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-category-title"> Chaat & Indian Street Snacks</h3>
+        <div class="bento-grid">
+            <div class="bento-card col-span-4">
+                <div class="bento-img-placeholder">🍛</div>
+                <div class="bento-content">
+                    <div><span class="badge">Street Food</span><h3 class="item-title">Chole Kulcha Station</h3><p class="item-desc">Spiced tangy chickpea curry served with fluffy, butter-toasted soft kulchas.</p></div>
+                    <div class="card-footer-flex"><div class="price-tag">RM 85.00</div><button class="order-btn" onclick="openCheckout('Chole Kulcha Party Tray', 85.00)">Select</button></div>
+                </div>
+            </div>
+            <div class="bento-card col-span-4">
+                <div class="bento-img-placeholder">pani</div>
+                <div class="bento-content">
+                    <div><span class="
