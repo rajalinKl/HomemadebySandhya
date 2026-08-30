@@ -34,20 +34,22 @@
         .nav-links a:hover { color: var(--primary-pink); }
         .insta-badge { background: var(--pastel-blush); padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--primary-pink); text-decoration: none; border: 1px solid rgba(217,136,149,0.25); white-space: nowrap; }
 
+        /* Luxury Hero Section with Background Image & Pastel Overlay */
         .hero { 
             position: relative;
-            padding: 5rem 5% 4.5rem; 
+            padding: 6rem 5% 5.5rem; 
             text-align: center; 
-            background: linear-gradient(135deg, rgba(217, 136, 149, 0.85), rgba(107, 168, 163, 0.85));
+            background: linear-gradient(rgba(44, 38, 40, 0.65), rgba(107, 168, 163, 0.7)), url('https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=1920&q=85') no-repeat center center/cover;
             color: white;
+            background-attachment: fixed;
         }
-        .hero h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.15); }
-        .hero p { font-size: 1.05rem; color: #F7F1F3; max-width: 600px; margin: 0 auto 2rem; font-weight: 300; }
+        .hero h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.1rem; color: #F7F1F3; max-width: 650px; margin: 0 auto 2.5rem; font-weight: 300; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         
-        .btn-primary { background: var(--primary-pink); color: white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(217,136,149,0.3); display: inline-block; text-align: center; transition: background 0.2s; }
+        .btn-primary { background: var(--primary-pink); color: white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(217,136,149,0.4); display: inline-block; text-align: center; transition: background 0.2s; }
         .btn-primary:hover { background: var(--primary-hover); }
-        .btn-secondary { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; cursor: pointer; display: inline-block; text-align: center; transition: background 0.2s; }
+        .btn-secondary { background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; border: 2px solid white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; cursor: pointer; display: inline-block; text-align: center; transition: background 0.2s; }
         .btn-secondary:hover { background: white; color: var(--text-dark); }
 
         .notice-banner { background: var(--teal-light); border: 1px solid rgba(107, 168, 163, 0.35); padding: 12px 18px; border-radius: 16px; text-align: center; max-width: 90%; margin: -20px auto 3rem; font-size: 0.85rem; font-weight: 600; color: #436E6A; position: relative; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
@@ -93,8 +95,8 @@
         footer a { color: #F5C6CE; text-decoration: none; }
 
         @media(min-width: 768px) {
-            .hero h1 { font-size: 3.2rem; }
-            .hero { padding: 5rem 6% 4.5rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .hero { padding: 7rem 6% 6rem; }
             .col-span-4 { grid-column: span 4; }
             .col-span-6 { grid-column: span 6; }
             .col-span-3 { grid-column: span 3; }
@@ -193,170 +195,3 @@
                             <input type="text" placeholder="+60 17-444 2997" required>
                         </div>
                         <div class="form-group">
-                            <label>Event Date & Headcount</label>
-                            <input type="text" placeholder="e.g. 15th Sept, 40 Guests" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Menu Items / Custom Requests</label>
-                            <textarea rows="3" placeholder="List items or describe custom dish ideas..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; text-align: center; margin-top: 0.5rem;">Request Custom Quotation</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="modal-overlay" id="checkoutModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">×</button>
-            <h3>Secure Order Gateway</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Review your order and select fulfillment options.</p>
-            
-            <div id="modalSummary" style="background: var(--bg-pink-cream); padding: 1rem; border-radius: 12px; margin: 1.2rem 0; font-size: 0.9rem;"></div>
-
-            <div class="form-group">
-                <label>Fulfillment Preference</label>
-                <select id="fulfillment" onchange="toggleAddressField()">
-                    <option value="pickup">Store Pickup (Free)</option>
-                    <option value="delivery">Home Delivery (Extra charges based on Grab rates)</option>
-                </select>
-            </div>
-
-            <div class="form-group" id="addressGroup" style="display: none;">
-                <label>Delivery Address</label>
-                <textarea id="deliveryAddress" rows="2" placeholder="Enter full delivery address..."></textarea>
-                <small style="color: var(--primary-pink); font-size: 0.75rem;">*Delivery fee calculated via Grab courier charges and billed separately.</small>
-            </div>
-
-            <div class="form-group">
-                <label>Contact Number / WhatsApp</label>
-                <input type="text" placeholder="+60 17-444 2997">
-            </div>
-
-            <button class="btn-primary" style="width: 100%; border: none; cursor: pointer; margin-top: 0.5rem;" onclick="processPayment()">Proceed to Secure Payment</button>
-        </div>
-    </div>
-
-    <footer>
-        <p style="font-family: Georgia, serif; font-size: 1.2rem; margin-bottom: 0.3rem;">Homemade by Sandhya</p>
-        <p style="color: #A0959A; font-size: 0.85rem;">Party & catering planner | Biryani, cakes, desserts & appetizers.</p>
-        <p style="margin-top: 1.2rem; font-size: 0.8rem;">WhatsApp: <a href="https://wa.me/60174442997" target="_blank">+60 17-444 2997</a> | Instagram: <a href="https://www.instagram.com/homemadebysandhya?igsi=d3Y5M29oNDI3OWJt" target="_blank">@homemadebysandhya</a></p>
-    </footer>
-
-    <script>
-        const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbym1DK8prXDaukpxOjGsfp1Atd1oDYS_WHynSmTM0qNirXt6ThR6exjMx4XsaV-smFoyQ/exec";
-
-        let currentItem = "";
-        let currentPrice = 0;
-
-        async function fetchMenuData() {
-            if (!SHEET_API_URL.startsWith("http")) return;
-            try {
-                const response = await fetch(SHEET_API_URL);
-                const items = await response.json();
-                renderMenu(items);
-            } catch (err) {
-                console.error("Error fetching sheet data:", err);
-            }
-        }
-
-        function renderMenu(items) {
-            const weeklyContainer = document.getElementById('weeklyContainer');
-            const fullMenuContainer = document.getElementById('fullMenuContainer');
-            
-            weeklyContainer.innerHTML = "";
-            fullMenuContainer.innerHTML = "";
-
-            let weeklyHTML = "";
-            let categories = {};
-
-            items.forEach(item => {
-                if (String(item.IsWeekly).toUpperCase() === "TRUE") {
-                    weeklyHTML += `
-                        <div class="bento-card col-span-4">
-                            <div class="bento-img-placeholder">${item.Image && item.Image.startsWith('http') ? `<img src="${item.Image}" alt="${item.Name}">` : (item.Image || '🍱')}</div>
-                            <div class="bento-content">
-                                <div>
-                                    <span class="badge pink">Weekly Special</span>
-                                    <h3 class="item-title">${item.Name}</h3>
-                                    <p class="item-desc">${item.Description}</p>
-                                </div>
-                                <div class="card-footer-flex">
-                                    <div class="price-tag">RM ${parseFloat(item.Price).toFixed(2)}</div>
-                                    <button class="order-btn" onclick="openCheckout('${item.Name.replace(/'/g, "\\'")}', ${item.Price})">Pre-Order</button>
-                                </div>
-                            </div>
-                        </div>`;
-                }
-
-                let cat = item.Category || "Party Menu";
-                if (!categories[cat]) categories[cat] = [];
-                categories[cat].push(item);
-            });
-
-            weeklyContainer.innerHTML = weeklyHTML || '<p style="grid-column: span 12; text-align: center; color: var(--text-muted);">No items marked as weekly active.</p>';
-
-            let fullHTML = "";
-            for (let cat in categories) {
-                fullHTML += `<h3 class="section-category-title">${cat}</h3><div class="bento-grid">`;
-                categories[cat].forEach(item => {
-                    fullHTML += `
-                        <div class="bento-card col-span-4">
-                            <div class="bento-img-placeholder">${item.Image && item.Image.startsWith('http') ? `<img src="${item.Image}" alt="${item.Name}">` : (item.Image || '🍽️')}</div>
-                            <div class="bento-content">
-                                <div>
-                                    <h3 class="item-title" style="font-size: 1.1rem;">${item.Name}</h3>
-                                    <p class="item-desc" style="font-size: 0.8rem;">${item.Description}</p>
-                                </div>
-                                <div class="card-footer-flex">
-                                    <div class="price-tag" style="font-size: 1rem;">RM ${parseFloat(item.Price).toFixed(2)}</div>
-                                    <button class="order-btn" onclick="openCheckout('${item.Name.replace(/'/g, "\\'")}', ${item.Price})">Select</button>
-                                </div>
-                            </div>
-                        </div>`;
-                });
-                fullHTML += `</div>`;
-            }
-            fullMenuContainer.innerHTML = fullHTML;
-        }
-
-        function openCheckout(name, price) {
-            currentItem = name;
-            currentPrice = price;
-            document.getElementById('modalSummary').innerHTML = `<strong>Selected Item:</strong> ${name}<br><strong>Price:</strong> RM ${parseFloat(price).toFixed(2)}<br><small style="color:var(--primary-pink); font-weight:600;">⚠️ Reminder: Weekly orders require 2 days advance notice.</small>`;
-            document.getElementById('checkoutModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('checkoutModal').style.display = 'none';
-        }
-
-        function toggleAddressField() {
-            const method = document.getElementById('fulfillment').value;
-            const addressGroup = document.getElementById('addressGroup');
-            addressGroup.style.display = method === 'delivery' ? 'block' : 'none';
-        }
-
-        function processPayment() {
-            const method = document.getElementById('fulfillment').value;
-            const address = document.getElementById('deliveryAddress').value;
-            if (method === 'delivery' && !address.trim()) {
-                alert('Please enter your delivery address.');
-                return;
-            }
-            alert(`Redirecting securely to payment gateway...\n\nItem: ${currentItem}\nFulfillment: ${method.toUpperCase()}\nBase Total: RM ${parseFloat(currentPrice).toFixed(2)}${method === 'delivery' ? '\n(Note: Grab delivery charges calculated & billed separately).' : ''}`);
-            closeModal();
-        }
-
-        window.onload = function() {
-            fetchMenuData();
-        };
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('checkoutModal');
-            if (event.target === modal) closeModal();
-        }
-    </script>
-</body>
-</html>
