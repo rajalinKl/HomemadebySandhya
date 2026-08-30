@@ -319,4 +319,68 @@
                 categories[cat].push(item);
             });
 
-            weeklyContainer.innerHTML = weeklyHTML || '<p style="grid-column: span 12; text-align: center; color: var(--text-muted);">No items marked as weekly active
+            weeklyContainer.innerHTML = weeklyHTML || '<p style="grid-column: span 12; text-align: center; color: var(--text-muted);">No items marked as weekly active.</p>';
+
+            let fullHTML = "";
+            for (let cat in categories) {
+                fullHTML += `<h3 class="section-category-title">${cat}</h3><div class="bento-grid">`;
+                categories[cat].forEach(item => {
+                    fullHTML += `
+                        <div class="bento-card col-span-4">
+                            <div class="bento-img-placeholder">${item.Image && item.Image.startsWith('http') ? `<img src="${item.Image}" alt="${item.Name}">` : (item.Image || '🍽️')}</div>
+                            <div class="bento-content">
+                                <div>
+                                    <h3 class="item-title" style="font-size: 1.1rem;">${item.Name}</h3>
+                                    <p class="item-desc" style="font-size: 0.8rem;">${item.Description}</p>
+                                </div>
+                                <div class="card-footer-flex">
+                                    <div class="price-tag" style="font-size: 1rem;">RM ${parseFloat(item.Price).toFixed(2)}</div>
+                                    <button class="order-btn" onclick="openCheckout('${item.Name.replace(/'/g, "\\'")}', ${item.Price})">Select</button>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+                fullHTML += `</div>`;
+            }
+            fullMenuContainer.innerHTML = fullHTML;
+        }
+
+        function openCheckout(name, price) {
+            currentItem = name;
+            currentPrice = price;
+            document.getElementById('modalSummary').innerHTML = `<strong>Selected Item:</strong> ${name}<br><strong>Price:</strong> RM ${parseFloat(price).toFixed(2)}<br><small style="color:var(--primary-pink); font-weight:600;">⚠️ Reminder: Weekly orders require 2 days advance notice.</small>`;
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        function toggleAddressField() {
+            const method = document.getElementById('fulfillment').value;
+            const addressGroup = document.getElementById('addressGroup');
+            addressGroup.style.display = method === 'delivery' ? 'block' : 'none';
+        }
+
+        function processPayment() {
+            const method = document.getElementById('fulfillment').value;
+            const address = document.getElementById('deliveryAddress').value;
+            if (method === 'delivery' && !address.trim()) {
+                alert('Please enter your delivery address.');
+                return;
+            }
+            alert(`Redirecting securely to payment gateway...\n\nItem: ${currentItem}\nFulfillment: ${method.toUpperCase()}\nBase Total: RM ${parseFloat(currentPrice).toFixed(2)}${method === 'delivery' ? '\n(Note: Grab delivery charges calculated & billed separately).' : ''}`);
+            closeModal();
+        }
+
+        window.onload = function() {
+            fetchMenuData();
+        };
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('checkoutModal');
+            if (event.target === modal) closeModal();
+        }
+    </script>
+</body>
+</html>
