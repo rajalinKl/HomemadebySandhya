@@ -1,40 +1,37 @@
-const MenuPreview = createClass({
+CMS.registerPreviewTemplate("menu", createClass({
   render() {
     const entry = this.props.entry;
-    const items = entry.getIn(['data', 'items']);
+    const data = entry.get('data');
     
-    if (!items) return h('div', { style: { padding: '40px', textAlign: 'center', color: '#888' } }, 'Loading live preview...');
+    if (!data) return h('div', { style: { padding: '30px', textAlign: 'center' } }, 'Loading preview...');
 
-    const itemsList = items.toJS();
+    // Handle both Map/List structures from Decap CMS
+    const items = data.get('items');
+    const itemsList = items ? items.toJS() : [];
 
-    return h('div', { style: { fontFamily: 'Inter, sans-serif', padding: '30px', background: '#fcf8f5', minHeight: '100vh' } },
-      // Header matching site theme
-      h('div', { style: { textAlign: 'center', marginBottom: '30px' } },
-        h('h2', { style: { color: '#2c1810', fontSize: '1.8rem', fontWeight: '800', marginBottom: '8px' } }, 'Live Menu Preview'),
-        h('p', { style: { color: '#8c6d62', fontSize: '0.9rem' } }, 'Real-time rendering of your customer-facing menu layout')
+    return h('div', { style: { fontFamily: 'sans-serif', padding: '24px', background: '#faf5f0', minHeight: '100vh' } },
+      h('div', { style: { textAlign: 'center', marginBottom: '24px' } },
+        h('h2', { style: { color: '#2c1810', fontSize: '1.5rem', fontWeight: '800' } }, 'Live Menu Preview'),
+        h('p', { style: { color: '#7a5c50', fontSize: '0.85rem' } }, `${itemsList.length} items loaded`)
       ),
-      // Bento Grid container
-      h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px', maxWidth: '1200px', margin: '0 auto' } },
+      h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '20px' } },
         itemsList.map((item, index) => {
-          return h('div', { key: index, style: { background: '#ffffff', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(44, 24, 16, 0.06)', border: '1px solid rgba(226, 212, 204, 0.6)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', transition: 'transform 0.2s' } },
-            // Image Box
-            h('div', { style: { height: '180px', background: '#f4ece6', position: 'relative', overflow: 'hidden' } },
+          return h('div', { key: index, style: { background: '#ffffff', borderRadius: '16px', overflow: 'hidden', border: '1px solid #e6d7cd', boxShadow: '0 4px 12px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column' } },
+            h('div', { style: { height: '140px', background: '#f4ede6', overflow: 'hidden' } },
               item.Image && item.Image.startsWith('http') 
                 ? h('img', { src: item.Image, style: { width: '100%', height: '100%', objectFit: 'cover' } })
-                : h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '2.5rem' } }, '🍱')
+                : h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '2rem' } }, '🍱')
             ),
-            // Content Body
-            h('div', { style: { padding: '20px', display: 'flex', flexDirection: 'column', flexGrow: '1', justifyContent: 'space-between' } },
+            h('div', { style: { padding: '16px', display: 'flex', flexDirection: 'column', flexGrow: '1', justifyContent: 'space-between' } },
               h('div', {},
-                String(item.IsWeekly).toUpperCase() === 'TRUE' && h('span', { style: { background: '#fdf2f2', color: '#d93838', fontSize: '0.7rem', fontWeight: '700', padding: '4px 10px', borderRadius: '20px', display: 'inline-block', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.05em' } }, 'Weekly Special'),
-                h('span', { style: { fontSize: '0.7rem', color: '#8c6d62', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: '600', marginBottom: '6px' } }, item.Category || 'Menu Item'),
-                h('h3', { style: { fontSize: '1.15rem', fontWeight: '700', color: '#2c1810', margin: '0 0 8px 0', lineHeight: '1.3' } }, item.Name || 'Untitled Dish'),
-                h('p', { style: { fontSize: '0.85rem', color: '#665147', margin: '0 0 20px 0', lineHeight: '1.5' } }, item.Description || 'No description provided.')
+                String(item.IsWeekly).toUpperCase() === 'TRUE' && h('span', { style: { background: '#fdf2f2', color: '#c53030', fontSize: '0.65rem', fontWeight: '700', padding: '3px 8px', borderRadius: '10px', display: 'inline-block', marginBottom: '8px' } }, 'WEEKLY SPECIAL'),
+                h('span', { style: { fontSize: '0.65rem', color: '#8c6d62', display: 'block', textTransform: 'uppercase', fontWeight: '600', marginBottom: '4px' } }, item.Category || 'Item'),
+                h('h4', { style: { fontSize: '1rem', fontWeight: '700', color: '#2c1810', margin: '0 0 6px 0' } }, item.Name || 'Untitled'),
+                h('p', { style: { fontSize: '0.8rem', color: '#594137', margin: '0 0 14px 0', lineHeight: '1.4' } }, item.Description || '')
               ),
-              // Card Footer / Price
-              h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #f4ece6', paddingTop: '14px', marginTop: 'auto' } },
-                h('div', { style: { fontWeight: '800', color: '#2c1810', fontSize: '1.1rem' } }, `RM ${parseFloat(item.Price || 0).toFixed(2)}`),
-                h('div', { style: { background: '#2c1810', color: '#ffffff', fontSize: '0.8rem', padding: '8px 16px', borderRadius: '12px', fontWeight: '600' } }, 'Select')
+              h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #f4ede6', paddingTop: '10px' } },
+                h('span', { style: { fontWeight: '700', color: '#2c1810', fontSize: '1rem' } }, `RM ${parseFloat(item.Price || 0).toFixed(2)}`),
+                h('span', { style: { background: '#2c1810', color: '#fff', fontSize: '0.75rem', padding: '5px 10px', borderRadius: '8px', fontWeight: '600' } }, 'Select')
               )
             )
           );
@@ -42,6 +39,4 @@ const MenuPreview = createClass({
       )
     );
   }
-});
-
-CMS.registerPreviewTemplate("menu", MenuPreview);
+}));
