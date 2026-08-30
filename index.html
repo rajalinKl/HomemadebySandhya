@@ -1,122 +1,372 @@
-<script>
-    const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbym1DK8prXDaukpxOjGsfp1Atd1oDYS_WHynSmTM0qNirXt6ThR6exjMx4XsaV-smFoyQ/exec";
-    // Wrap with a CORS proxy to bypass browser security blocks instantly
-    const PROXIED_API_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(SHEET_API_URL)}`;
-
-    let currentItem = "";
-    let currentPrice = 0;
-
-    async function fetchMenuData() {
-        try {
-            const response = await fetch(PROXIED_API_URL);
-            const wrapper = await response.json();
-            const items = JSON.parse(wrapper.contents);
-            
-            if (items && items.length > 0) {
-                renderMenu(items);
-            } else {
-                document.getElementById('weeklyContainer').innerHTML = '<p style="grid-column: span 12; text-align: center; color: var(--text-muted);">No items found in sheet.</p>';
-            }
-        } catch (err) {
-            console.error("Error fetching menu data:", err);
-            document.getElementById('weeklyContainer').innerHTML = '<p style="grid-column: span 12; text-align: center; color: var(--primary-pink);">Unable to connect to menu source.</p>';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homemade by Sandhya | Party & Catering Planner</title>
+    <style>
+        :root {
+            --bg-pink-cream: #FAF2F5;
+            --card-bg: #FFFFFF;
+            --primary-pink: #D98895;
+            --primary-hover: #C2727F;
+            --teal-accent: #6BA8A3;
+            --teal-light: #E6F2F1;
+            --pastel-blush: #FDE8EC;
+            --text-dark: #2C2628;
+            --text-muted: #73686D;
+            --border-radius: 20px;
         }
-    }
 
-    function renderMenu(items) {
-        const weeklyContainer = document.getElementById('weeklyContainer');
-        const fullMenuContainer = document.getElementById('fullMenuContainer');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-pink-cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; scroll-behavior: smooth; }
+        h1, h2, h3, h4 { font-family: Georgia, serif; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 4%; background: rgba(250, 242, 245, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(217, 136, 149, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+        .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-pink); background-color: #fff; flex-shrink: 0; }
+        .logo-text-group { display: flex; flex-direction: column; }
+        .logo-title { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); font-family: Georgia, serif; line-height: 1.1; }
+        .logo-subtitle { font-size: 0.65rem; color: var(--teal-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        weeklyContainer.innerHTML = "";
-        fullMenuContainer.innerHTML = "";
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; transition: color 0.2s ease; }
+        .nav-links a:hover { color: var(--primary-pink); }
+        .insta-badge { background: var(--pastel-blush); padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--primary-pink); text-decoration: none; border: 1px solid rgba(217,136,149,0.25); white-space: nowrap; }
 
-        let weeklyHTML = "";
-        let categories = {};
+        .hero { 
+            position: relative;
+            padding: 7rem 5% 6rem; 
+            text-align: center; 
+            background-image: linear-gradient(rgba(44, 38, 40, 0.7), rgba(107, 168, 163, 0.75)), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=85');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+        .hero h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .hero p { font-size: 1.1rem; color: #F7F1F3; max-width: 650px; margin: 0 auto 2.5rem; font-weight: 300; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+        .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        
+        .btn-primary { background: var(--primary-pink); color: white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(217,136,149,0.4); display: inline-block; text-align: center; transition: background 0.2s; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-secondary { background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; border: 2px solid white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; cursor: pointer; display: inline-block; text-align: center; transition: background 0.2s; }
+        .btn-secondary:hover { background: white; color: var(--text-dark); }
 
-        items.forEach(item => {
-            if (String(item.IsWeekly).toUpperCase() === "TRUE") {
-                weeklyHTML += `
-                    <div class="bento-card col-span-4">
-                        <div class="bento-img-placeholder">${item.Image && item.Image.startsWith('http') ? `<img src="${item.Image}" alt="${item.Name}">` : (item.Image || '🍱')}</div>
-                        <div class="bento-content">
-                            <div>
-                                <span class="badge pink">Weekly Special</span>
-                                <h3 class="item-title">${item.Name}</h3>
-                                <p class="item-desc">${item.Description}</p>
-                            </div>
-                            <div class="card-footer-flex">
-                                <div class="price-tag">RM ${parseFloat(item.Price).toFixed(2)}</div>
-                                <button class="order-btn" onclick="openCheckout('${item.Name.replace(/'/g, "\\'")}', ${item.Price})">Pre-Order</button>
-                            </div>
+        .notice-banner { background: var(--teal-light); border: 1px solid rgba(107, 168, 163, 0.35); padding: 12px 18px; border-radius: 16px; text-align: center; max-width: 90%; margin: -20px auto 3rem; font-size: 0.85rem; font-weight: 600; color: #436E6A; position: relative; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 1.5rem 4%; }
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; border-bottom: 1px solid rgba(217,136,149,0.15); padding-bottom: 0.8rem; flex-wrap: wrap; gap: 10px; }
+        .section-header h2 { font-size: 1.8rem; color: var(--text-dark); font-family: Georgia, serif; }
+        .section-category-title { font-size: 1.4rem; color: var(--text-dark); margin: 2.5rem 0 1.2rem 0; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(107,168,163,0.25); font-family: Georgia, serif; }
+
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+        .col-span-4 { grid-column: span 12; }
+        .col-span-6 { grid-column: span 12; }
+        .col-span-3 { grid-column: span 12; }
+
+        .bento-card { background: var(--card-bg); border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.04); display: flex; flex-direction: column; position: relative; border: 1px solid rgba(217,136,149,0.1); }
+        .bento-img-placeholder { width: 100%; height: 160px; background: linear-gradient(135deg, #FDE8EC, #E6F2F1); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; overflow: hidden; }
+        .bento-img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+
+        .bento-content { padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+        .badge { display: inline-block; background: var(--teal-accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem; width: fit-content; }
+        .badge.pink { background: var(--primary-pink); }
+
+        .item-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem; font-family: Georgia, serif; }
+        .item-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.2rem; }
+
+        .card-footer-flex { display: flex; justify-content: space-between; align-items: center; margin-top: auto; width: 100%; gap: 10px; }
+        .price-tag { font-size: 1.2rem; font-weight: 700; color: var(--primary-pink); white-space: nowrap; }
+        
+        .order-btn { background: var(--teal-light); color: #355A57; border: none; padding: 9px 16px; border-radius: 12px; font-weight: 600; font-size: 0.8rem; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+        .order-btn:hover { background: #D0EBE8; }
+
+        .bespoke-wrapper { background: linear-gradient(135deg, #FDE8EC 0%, #E6F2F1 100%); border-radius: 24px; padding: 2rem 1.5rem; margin: 4rem 0; border: 1px solid rgba(107,168,163,0.3); }
+        .bespoke-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: var(--text-dark); }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #D1C5C8; font-family: inherit; background: white; font-size: 0.95rem; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44,38,40,0.65); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 1rem; }
+        .modal-content { background: white; width: 100%; max-width: 480px; padding: 2rem 1.5rem; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); position: relative; max-height: 90vh; overflow-y: auto; }
+        .close-modal { position: absolute; top: 18px; right: 18px; background: #FAF2F5; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 0.9rem; color: var(--text-dark); }
+
+        footer { background: var(--text-dark); color: white; text-align: center; padding: 3rem 5%; margin-top: 5rem; }
+        footer a { color: #F5C6CE; text-decoration: none; }
+
+        @media(min-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero { padding: 8rem 6% 7rem; }
+            .col-span-4 { grid-column: span 4; }
+            .col-span-6 { grid-column: span 6; }
+            .col-span-3 { grid-column: span 3; }
+            .bespoke-wrapper { padding: 4rem; }
+            .bespoke-grid { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
+            .modal-content { padding: 2.5rem; }
+        }
+        
+        @media(max-width: 767px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-area">
+            <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-text-group">
+                <span class="logo-title">Homemade by Sandhya</span>
+                <span class="logo-subtitle">Catering Planner</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#weekly-menu">Weekly Menu</a></li>
+            <li><a href="#party-menu">Party Menu</a></li>
+            <li><a href="#bespoke-section">Custom</a></li>
+            <li><a href="https://www.instagram.com/homemadebysandhya?igsi=d3Y5M29oNDI3OWJt" target="_blank" class="insta-badge">📸 Instagram</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Soulful Home Cooking & Bespoke Confectionery</h1>
+        <p>Specialised in exquisite party catering, authentic regional biryanis, artisan bakes, and handcrafted treats.</p>
+        <div class="hero-btns">
+            <a href="#weekly-menu" class="btn-primary">Order Weekly Menu</a>
+            <a href="#bespoke-section" class="btn-secondary">Plan a Party Order</a>
+        </div>
+    </header>
+
+    <div class="notice-banner">
+        ⚠️ Note: Weekly menu items require ordering at least 2 days in advance. Delivery charges calculated separately based on Grab rates.
+    </div>
+
+    <main class="container" id="weekly-menu">
+        <div class="section-header">
+            <div>
+                <span style="color: var(--teal-accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Fresh Weekly Batch</span>
+                <h2>Weekly Pre-Order Menu</h2>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">🗓️ 2 Days Notice Required</span>
+        </div>
+        <div class="bento-grid" id="weeklyContainer">
+            <p style="grid-column: span 12; text-align: center; color: var(--text-muted);">Preparing Sandhya's fresh kitchen spread...</p>
+        </div>
+    </main>
+
+    <section class="container" id="party-menu">
+        <div class="section-header">
+            <div>
+                <span style="color: var(--teal-accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Celebration Spreads</span>
+                <h2>Full Party & Catering Menu</h2>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">🎉 For parties & events</span>
+        </div>
+        <div id="fullMenuContainer">
+            <p style="text-align: center; color: var(--text-muted);">Loading celebration menu items...</p>
+        </div>
+    </section>
+
+    <section class="container" id="bespoke-section">
+        <div class="bespoke-wrapper">
+            <div class="bespoke-grid">
+                <div>
+                    <span style="color: var(--teal-accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Fully Tailored</span>
+                    <h2 style="font-size: 2rem; margin: 0.5rem 0 1rem 0;">Bespoke Catering Builder</h2>
+                    <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                        Want something specific that isn't on the menu? Choose items from above OR suggest your own custom dishes, theme requests, or dietary preferences. Sandhya will personally design a bespoke order and quotation for you.
+                    </p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-weight: 500; font-size: 0.9rem;">
+                        <li>✨ Customized menus tailored to your guest count</li>
+                        <li>🎨 Theme decoration & fondant cake matching</li>
+                        <li>🌿 Vegetarian and allergy-friendly adjustments</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 2rem 1.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.04);">
+                    <h3 style="margin-bottom: 1.2rem; font-size: 1.3rem;">Submit Custom Catering Request</h3>
+                    <form onsubmit="event.preventDefault(); alert('Your bespoke catering request has been submitted successfully! Sandhya will WhatsApp you with a custom quotation shortly.');">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" placeholder="Enter full name" required>
                         </div>
-                    </div>`;
+                        <div class="form-group">
+                            <label>Phone / WhatsApp Number</label>
+                            <input type="text" placeholder="+60 17-444 2997" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Event Date & Headcount</label>
+                            <input type="text" placeholder="e.g. 15th Sept, 40 Guests" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Menu Items / Custom Requests</label>
+                            <textarea rows="3" placeholder="List items or describe custom dish ideas..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; text-align: center; margin-top: 0.5rem;">Request Custom Quotation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <h3>Secure Order Gateway</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Review your order and select fulfillment options.</p>
+            
+            <div id="modalSummary" style="background: var(--bg-pink-cream); padding: 1rem; border-radius: 12px; margin: 1.2rem 0; font-size: 0.9rem;"></div>
+
+            <div class="form-group">
+                <label>Fulfillment Preference</label>
+                <select id="fulfillment" onchange="toggleAddressField()">
+                    <option value="pickup">Store Pickup (Free)</option>
+                    <option value="delivery">Home Delivery (Extra charges based on Grab rates)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="addressGroup" style="display: none;">
+                <label>Delivery Address</label>
+                <textarea id="deliveryAddress" rows="2" placeholder="Enter full delivery address..."></textarea>
+                <small style="color: var(--primary-pink); font-size: 0.75rem;">*Delivery fee calculated via Grab courier charges and billed separately.</small>
+            </div>
+
+            <div class="form-group">
+                <label>Contact Number / WhatsApp</label>
+                <input type="text" placeholder="+60 17-444 2997">
+            </div>
+
+            <button class="btn-primary" style="width: 100%; border: none; cursor: pointer; margin-top: 0.5rem;" onclick="processPayment()">Proceed to Secure Payment</button>
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-family: Georgia, serif; font-size: 1.2rem; margin-bottom: 0.3rem;">Homemade by Sandhya</p>
+        <p style="color: #A0959A; font-size: 0.85rem;">Party & catering planner | Biryani, cakes, desserts & appetizers.</p>
+        <p style="margin-top: 1.2rem; font-size: 0.8rem;">WhatsApp: <a href="https://wa.me/60174442997" target="_blank">+60 17-444 2997</a> | Instagram: <a href="https://www.instagram.com/homemadebysandhya?igsi=d3Y5M29oNDI3OWJt" target="_blank">@homemadebysandhya</a></p>
+    </footer>
+
+    <script>
+        const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbym1DK8prXDaukpxOjGsfp1Atd1oDYS_WHynSmTM0qNirXt6ThR6exjMx4XsaV-smFoyQ/exec";
+        const PROXIED_API_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(SHEET_API_URL)}`;
+
+        let currentItem = "";
+        let currentPrice = 0;
+
+        async function fetchMenuData() {
+            try {
+                const response = await fetch(PROXIED_API_URL);
+                const wrapper = await response.json();
+                const items = JSON.parse(wrapper.contents);
+                
+                if (items && items.length > 0) {
+                    renderMenu(items);
+                } else {
+                    document.getElementById('weeklyContainer').innerHTML = '<p style="grid-column: span 12; text-align: center; color: var(--text-muted);">No items found in sheet.</p>';
+                }
+            } catch (err) {
+                console.error("Error fetching menu data:", err);
+                document.getElementById('weeklyContainer').innerHTML = '<p style="grid-column: span 12; text-align: center; color: var(--primary-pink);">Unable to connect to menu source.</p>';
             }
+        }
 
-            let cat = item.Category || "Party Menu";
-            if (!categories[cat]) categories[cat] = [];
-            categories[cat].push(item);
-        });
+        function renderMenu(items) {
+            const weeklyContainer = document.getElementById('weeklyContainer');
+            const fullMenuContainer = document.getElementById('fullMenuContainer');
+            
+            weeklyContainer.innerHTML = "";
+            fullMenuContainer.innerHTML = "";
 
-        weeklyContainer.innerHTML = weeklyHTML || '<p style="grid-column: span 12; text-align: center; color: var(--text-muted);">No items marked as weekly active.</p>';
+            let weeklyHTML = "";
+            let categories = {};
 
-        let fullHTML = "";
-        for (let cat in categories) {
-            fullHTML += `<h3 class="section-category-title">${cat}</h3><div class="bento-grid">`;
-            categories[cat].forEach(item => {
-                fullHTML += `
-                    <div class="bento-card col-span-4">
-                        <div class="bento-img-placeholder">${item.Image && item.Image.startsWith('http') ? `<img src="${item.Image}" alt="${item.Name}">` : (item.Image || '🍽️')}</div>
-                        <div class="bento-content">
-                            <div>
-                                <h3 class="item-title" style="font-size: 1.1rem;">${item.Name}</h3>
-                                <p class="item-desc" style="font-size: 0.8rem;">${item.Description}</p>
+            items.forEach(item => {
+                if (String(item.IsWeekly).toUpperCase() === "TRUE") {
+                    weeklyHTML += `
+                        <div class="bento-card col-span-4">
+                            <div class="bento-img-placeholder">${item.Image && item.Image.startsWith('http') ? `<img src="${item.Image}" alt="${item.Name}">` : (item.Image || '🍱')}</div>
+                            <div class="bento-content">
+                                <div>
+                                    <span class="badge pink">Weekly Special</span>
+                                    <h3 class="item-title">${item.Name}</h3>
+                                    <p class="item-desc">${item.Description}</p>
+                                </div>
+                                <div class="card-footer-flex">
+                                    <div class="price-tag">RM ${parseFloat(item.Price).toFixed(2)}</div>
+                                    <button class="order-btn" onclick="openCheckout('${item.Name.replace(/'/g, "\\'")}', ${item.Price})">Pre-Order</button>
+                                </div>
                             </div>
-                            <div class="card-footer-flex">
-                                <div class="price-tag" style="font-size: 1rem;">RM ${parseFloat(item.Price).toFixed(2)}</div>
-                                <button class="order-btn" onclick="openCheckout('${item.Name.replace(/'/g, "\\'")}', ${item.Price})">Select</button>
-                            </div>
-                        </div>
-                    </div>`;
+                        </div>`;
+                }
+
+                let cat = item.Category || "Party Menu";
+                if (!categories[cat]) categories[cat] = [];
+                categories[cat].push(item);
             });
-            fullHTML += `</div>`;
+
+            weeklyContainer.innerHTML = weeklyHTML || '<p style="grid-column: span 12; text-align: center; color: var(--text-muted);">No items marked as weekly active.</p>';
+
+            let fullHTML = "";
+            for (let cat in categories) {
+                fullHTML += `<h3 class="section-category-title">${cat}</h3><div class="bento-grid">`;
+                categories[cat].forEach(item => {
+                    fullHTML += `
+                        <div class="bento-card col-span-4">
+                            <div class="bento-img-placeholder">${item.Image && item.Image.startsWith('http') ? `<img src="${item.Image}" alt="${item.Name}">` : (item.Image || '🍽️')}</div>
+                            <div class="bento-content">
+                                <div>
+                                    <h3 class="item-title" style="font-size: 1.1rem;">${item.Name}</h3>
+                                    <p class="item-desc" style="font-size: 0.8rem;">${item.Description}</p>
+                                </div>
+                                <div class="card-footer-flex">
+                                    <div class="price-tag" style="font-size: 1rem;">RM ${parseFloat(item.Price).toFixed(2)}</div>
+                                    <button class="order-btn" onclick="openCheckout('${item.Name.replace(/'/g, "\\'")}', ${item.Price})">Select</button>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+                fullHTML += `</div>`;
+            }
+            fullMenuContainer.innerHTML = fullHTML;
         }
-        fullMenuContainer.innerHTML = fullHTML;
-    }
 
-    function openCheckout(name, price) {
-        currentItem = name;
-        currentPrice = price;
-        document.getElementById('modalSummary').innerHTML = `<strong>Selected Item:</strong> ${name}<br><strong>Price:</strong> RM ${parseFloat(price).toFixed(2)}<br><small style="color:var(--primary-pink); font-weight:600;">⚠️ Reminder: Weekly orders require 2 days advance notice.</small>`;
-        document.getElementById('checkoutModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-        document.getElementById('checkoutModal').style.display = 'none';
-    }
-
-    function toggleAddressField() {
-        const method = document.getElementById('fulfillment').value;
-        const addressGroup = document.getElementById('addressGroup');
-        addressGroup.style.display = method === 'delivery' ? 'block' : 'none';
-    }
-
-    function processPayment() {
-        const method = document.getElementById('fulfillment').value;
-        const address = document.getElementById('deliveryAddress').value;
-        if (method === 'delivery' && !address.trim()) {
-            alert('Please enter your delivery address.');
-            return;
+        function openCheckout(name, price) {
+            currentItem = name;
+            currentPrice = price;
+            document.getElementById('modalSummary').innerHTML = `<strong>Selected Item:</strong> ${name}<br><strong>Price:</strong> RM ${parseFloat(price).toFixed(2)}<br><small style="color:var(--primary-pink); font-weight:600;">⚠️ Reminder: Weekly orders require 2 days advance notice.</small>`;
+            document.getElementById('checkoutModal').style.display = 'flex';
         }
-        alert(`Redirecting securely to payment gateway...\n\nItem: ${currentItem}\nFulfillment: ${method.toUpperCase()}\nBase Total: RM ${parseFloat(currentPrice).toFixed(2)}${method === 'delivery' ? '\n(Note: Grab delivery charges calculated & billed separately).' : ''}`);
-        closeModal();
-    }
 
-    window.onload = function() {
-        fetchMenuData();
-    };
+        function closeModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
 
-    window.onclick = function(event) {
-        const modal = document.getElementById('checkoutModal');
-        if (event.target === modal) closeModal();
-    }
-</script>
+        function toggleAddressField() {
+            const method = document.getElementById('fulfillment').value;
+            const addressGroup = document.getElementById('addressGroup');
+            addressGroup.style.display = method === 'delivery' ? 'block' : 'none';
+        }
+
+        function processPayment() {
+            const method = document.getElementById('fulfillment').value;
+            const address = document.getElementById('deliveryAddress').value;
+            if (method === 'delivery' && !address.trim()) {
+                alert('Please enter your delivery address.');
+                return;
+            }
+            alert(`Redirecting securely to payment gateway...\n\nItem: ${currentItem}\nFulfillment: ${method.toUpperCase()}\nBase Total: RM ${parseFloat(currentPrice).toFixed(2)}${method === 'delivery' ? '\n(Note: Grab delivery charges calculated & billed separately).' : ''}`);
+            closeModal();
+        }
+
+        window.onload = function() {
+            fetchMenuData();
+        };
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('checkoutModal');
+            if (event.target === modal) closeModal();
+        }
+    </script>
+</body>
+</html>
