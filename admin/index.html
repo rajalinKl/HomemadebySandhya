@@ -1,42 +1,60 @@
-<style>
-  :root {
-    --nc-bg: #fff5f8;
-    --nc-surface: #ffffff;
-    --nc-primary: #e91e63;
-    --nc-primary-hover: #c2185b;
-    --nc-accent: #00bcd4;
-    --nc-border: #f8bbd0;
-    --nc-text: #374151;
-  }
-  body { 
-    background-color: var(--nc-bg) !important; 
-    color: var(--nc-text) !important; 
-    font-family: 'Inter', sans-serif !important; 
-  }
-  /* Hide the right-side text preview panel */
-  div[class*="PreviewPane"] {
-    display: none !important;
-  }
-  /* Expand the main workspace */
-  div[class*="CollectionMain"] {
-    max-width: 100% !important;
-  }
-  /* Style buttons with vibrant pink and teal accents */
-  button[class*="Button"]:not([type="submit"]) {
-    background-color: #e0f7fa !important;
-    color: #006064 !important;
-    border: 1px solid #b2ebf2 !important;
-    border-radius: 8px !important;
-  }
-  button[class*="Button"]:not([type="submit"]):hover {
-    background-color: #b2ebf2 !important;
-  }
-  /* Save / Publish buttons in bright pink */
-  button[type="submit"], button[class*="primary"] {
-    background-color: #e91e63 !important;
-    color: #ffffff !important;
-  }
-  button[type="submit"]:hover {
-    background-color: #c2185b !important;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Manager | Homemade by Sandhya</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <style>
+      :root {
+        --nc-bg: #fff5f8;
+        --nc-surface: #ffffff;
+        --nc-primary: #e91e63;
+        --nc-primary-hover: #c2185b;
+        --nc-accent: #00bcd4;
+        --nc-border: #f8bbd0;
+        --nc-text: #374151;
+      }
+      body { 
+        background-color: var(--nc-bg) !important; 
+        color: var(--nc-text) !important; 
+        font-family: 'Inter', sans-serif !important; 
+      }
+      /* Style buttons with vibrant pink and teal accents */
+      button[class*="Button"]:not([type="submit"]) {
+        background-color: #e0f7fa !important;
+        color: #006064 !important;
+        border: 1px solid #b2ebf2 !important;
+        border-radius: 8px !important;
+      }
+      button[class*="Button"]:not([type="submit"]):hover {
+        background-color: #b2ebf2 !important;
+      }
+      /* Save / Publish buttons in bright pink */
+      button[type="submit"], button[class*="primary"] {
+        background-color: var(--nc-primary) !important;
+        color: #ffffff !important;
+      }
+      button[type="submit"]:hover {
+        background-color: var(--nc-primary-hover) !important;
+      }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="preview.js"></script>
+
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+</body>
+</html>
