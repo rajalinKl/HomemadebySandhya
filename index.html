@@ -48,8 +48,10 @@
         .hero p { font-size: 1.05rem; color: #F1ECE6; max-width: 600px; margin: 0 auto 2rem; font-weight: 300; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         
-        .btn-primary { background: var(--primary-terracotta); color: white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(216,122,94,0.3); }
-        .btn-secondary { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); color: white; border: 2px solid rgba(255,255,255,0.6); padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .btn-primary { background: var(--primary-terracotta); color: white; padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(216,122,94,0.3); display: inline-block; text-align: center; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-secondary { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); color: white; border: 2px solid rgba(255,255,255,0.6); padding: 12px 26px; border-radius: 40px; text-decoration: none; font-weight: 600; cursor: pointer; display: inline-block; text-align: center; }
+        .btn-secondary:hover { background: white; color: var(--text-dark); }
 
         /* Notice Banner */
         .notice-banner { background: rgba(249, 235, 234, 0.9); backdrop-filter: blur(5px); border: 1px solid rgba(216, 122, 94, 0.3); padding: 12px 18px; border-radius: 16px; text-align: center; max-width: 90%; margin: -20px auto 3rem; font-size: 0.85rem; font-weight: 600; color: #9E4D34; position: relative; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
@@ -94,142 +96,4 @@
         /* Modal Overlay */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(30,28,27,0.65); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 1rem; }
         .modal-content { background: white; width: 100%; max-width: 480px; padding: 2rem 1.5rem; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); position: relative; max-height: 90vh; overflow-y: auto; }
-        .close-modal { position: absolute; top: 18px; right: 18px; background: #F3EFEA; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 0.9rem; color: var(--text-dark); }
-
-        /* Footer */
-        footer { background: var(--text-dark); color: white; text-align: center; padding: 3rem 5%; margin-top: 5rem; }
-        footer a { color: #E8D3C8; text-decoration: none; }
-
-        /* Media Queries for Desktop and Tablets */
-        @media(min-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
-            .hero { padding: 6rem 6% 5rem; }
-            .col-span-8 { grid-column: span 8; }
-            .col-span-4 { grid-column: span 4; }
-            .col-span-6 { grid-column: span 6; }
-            .col-span-3 { grid-column: span 3; }
-            .bespoke-wrapper { padding: 4rem; }
-            .bespoke-grid { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
-            .modal-content { padding: 2.5rem; }
-            .section-header h2 { font-size: 2.3rem; }
-        }
-        
-        @media(max-width: 767px) {
-            .nav-links { display: none; } /* Mobile compact layout */
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="#" class="logo-area">
-            <img src="image_86130d.jpg" alt="Homemade by Sandhya Logo" class="logo-img">
-            <div class="logo-text-group">
-                <span class="logo-title">Homemade by Sandhya</span>
-                <span class="logo-subtitle">Catering Planner</span>
-            </div>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#weekly-menu">Weekly Menu</a></li>
-            <li><a href="#party-menu">Party Menu</a></li>
-            <li><a href="#bespoke-section">Custom</a></li>
-            <li><a href="https://www.instagram.com/homemadebysandhya?igsi=d3Y5M29oNDI3OWJt" target="_blank" class="insta-badge">📸 Instagram</a></li>
-        </ul>
-    </nav>
-
-    <header class="hero">
-        <h1>Soulful Home Cooking & Bespoke Confectionery</h1>
-        <p>Specialised in exquisite party catering, authentic regional biryanis, artisan bakes, and handcrafted treats.</p>
-        <div class="hero-btns">
-            <a href="#weekly-menu" class="btn-primary">Order Weekly Menu</a>
-            <a href="#bespoke-section" class="btn-secondary">Plan a Party Order</a>
-        </div>
-    </header>
-
-    <div class="notice-banner">
-        ⚠️ Note: Weekly menu items require ordering at least 2 days in advance. Delivery charges calculated separately based on Grab rates.
-    </div>
-
-    <main class="container" id="weekly-menu">
-        <div class="section-header">
-            <div>
-                <span style="color: var(--primary-terracotta); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Fresh Weekly Batch</span>
-                <h2>Weekly Pre-Order Menu</h2>
-            </div>
-            <span style="font-size: 0.85rem; color: var(--text-muted);">🗓️ 2 Days Notice Required</span>
-        </div>
-
-        <div class="bento-grid">
-            <div class="bento-card col-span-4">
-                <div class="bento-img-wrap">
-                    <span class="badge terracotta">Weekly Special</span>
-                    <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80" alt="Homestyle Comfort Thali">
-                </div>
-                <div class="bento-content">
-                    <div>
-                        <h3 class="item-title">Homestyle Comfort Thali Box</h3>
-                        <p class="item-desc">Slow-cooked seasonal main, two daily sides, aromatic basmati rice, and warm soft roti.</p>
-                    </div>
-                    <div class="card-footer-flex">
-                        <div class="price-tag">RM 28.00</div>
-                        <button class="order-btn" onclick="openCheckout('Homestyle Comfort Thali Box', 28.00)">Pre-Order</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card col-span-4">
-                <div class="bento-img-wrap">
-                    <span class="badge">Weekend Special</span>
-                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Spice-Rubbed Roast">
-                </div>
-                <div class="bento-content">
-                    <div>
-                        <h3 class="item-title">Spice-Rubbed Roast Chicken</h3>
-                        <p class="item-desc">Marinated for 24 hours in Sandhya's signature secret herb blend and oven-roasted.</p>
-                    </div>
-                    <div class="card-footer-flex">
-                        <div class="price-tag">RM 45.00</div>
-                        <button class="order-btn" onclick="openCheckout('Spice-Rubbed Roast Chicken', 45.00)">Pre-Order</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card col-span-4">
-                <div class="bento-img-wrap">
-                    <span class="badge terracotta">Fresh Bake</span>
-                    <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" alt="Sourdough Loaf">
-                </div>
-                <div class="bento-content">
-                    <div>
-                        <h3 class="item-title">Artisan Country Sourdough</h3>
-                        <p class="item-desc">Natural 36-hour slow fermentation with a crackling crust and airy open crumb.</p>
-                    </div>
-                    <div class="card-footer-flex">
-                        <div class="price-tag">RM 25.00</div>
-                        <button class="order-btn" onclick="openCheckout('Artisan Country Sourdough Loaf', 25.00)">Pre-Order</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <section class="container" id="party-menu">
-        <div class="section-header">
-            <div>
-                <span style="color: var(--primary-terracotta); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Celebration Spreads</span>
-                <h2>Full Party & Catering Menu</h2>
-            </div>
-            <span style="font-size: 0.85rem; color: var(--text-muted);">🎉 For parties & events</span>
-        </div>
-
-        <h3 class="section-category-title">🍰 Cakes & Sweet Confections</h3>
-        <div class="bento-grid">
-            <div class="bento-card col-span-3">
-                <div class="bento-img-wrap"><img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=500&q=80" alt="Fondant Cake"></div>
-                <div class="bento-content">
-                    <div><span class="badge terracotta">Custom Art</span><h3 class="item-title" style="font-size: 1.1rem;">Custom Fondant Cakes</h3><p class="item-desc" style="font-size: 0.8rem;">Sculpted sugar art tailored to your exact celebration theme.</p></div>
-                    <div class="card-footer-flex"><div class="price-tag" style="font-size: 1rem;">From RM 200</div><button class="order-btn" onclick="openCheckout('Custom Fondant Cake', 200.00)">Select</button></div>
-                </div>
-            </div>
-            <div class="bento-card col-span-3">
-                <div class="bento-img-
+        .close-modal { position: absolute; top: 18px; right: 18px; background: #F3EFEA; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 0.9rem; color: var(--text-dark
