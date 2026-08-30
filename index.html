@@ -266,8 +266,8 @@
     async function fetchMenuData() {
         try {
             const response = await fetch('menu.json');
-            const items = await response.json();
-            
+            const data = await response.json();
+            const items = data.items || data; // handles both formats safely
             if (items && items.length > 0) {
                 renderMenu(items);
             } else {
