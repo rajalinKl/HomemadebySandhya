@@ -4,7 +4,7 @@
       "Category": "Weekly Menu",
       "Name": "Homestyle Comfort Thali Box",
       "Description": "Slow-cooked seasonal main, two daily sides, aromatic basmati rice, and warm soft roti.",
-      "Price": 28.00,
+      "Price": 62,
       "Image": "https://media.istockphoto.com/id/1507243220/photo/top-table-view-of-thai-food-in-derivery-box.jpg?s=1024x1024&w=is&k=20&c=N5r9y09LofjOBx2MZbjv1sTrmeXFag5KwcR-z1AcX6c=",
       "IsWeekly": "TRUE"
     },
@@ -12,7 +12,7 @@
       "Category": "Weekly Menu",
       "Name": "Spice-Rubbed Roast Chicken",
       "Description": "Marinated for 24 hours in Sandhya's signature secret herb blend and oven-roasted.",
-      "Price": 45.00,
+      "Price": 45,
       "Image": "https://plus.unsplash.com/premium_photo-1661419883163-bb4df1c10109?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cm9hc3QlMjBjaGlja2VufGVufDB8fDB8fHww",
       "IsWeekly": "TRUE"
     },
@@ -20,7 +20,7 @@
       "Category": "Weekly Menu",
       "Name": "Artisan Country Sourdough",
       "Description": "Natural 36-hour slow fermentation with a crackling crust and airy open crumb.",
-      "Price": 25.00,
+      "Price": 25,
       "Image": "https://plus.unsplash.com/premium_photo-1673111979369-0222c7314b82?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c291cmRvdWdofGVufDB8fDB8fHww",
       "IsWeekly": "TRUE"
     },
@@ -28,7 +28,7 @@
       "Category": "Cakes & Sweet Confections",
       "Name": "Custom Fondant Cakes",
       "Description": "Sculpted sugar art tailored to your exact celebration theme.",
-      "Price": 200.00,
+      "Price": 200,
       "Image": "https://images.unsplash.com/photo-1561028526-2b70dc395139?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1lcm1haWQlMjBjYWtlfGVufDB8fDB8fHww",
       "IsWeekly": "FALSE"
     },
@@ -36,7 +36,7 @@
       "Category": "Cakes & Sweet Confections",
       "Name": "Fruit Cakes & Shortcakes",
       "Description": "Moist sponge layered with fresh cream and seasonal fruits.",
-      "Price": 110.00,
+      "Price": 110,
       "Image": "https://plus.unsplash.com/premium_photo-1705433052895-752216a6a0f5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZnJ1aXRjYWtlfGVufDB8fDB8fHww",
       "IsWeekly": "FALSE"
     },
@@ -44,7 +44,7 @@
       "Category": "Cakes & Sweet Confections",
       "Name": "Tres Leches & Jelly Cakes",
       "Description": "Saffron/Biscoff tres leches trays and clear jelly cakes.",
-      "Price": 95.00,
+      "Price": 95,
       "Image": "https://media.istockphoto.com/id/915977536/photo/saffron-and-pistachio-three-milk-cake-tres-leches-cake-with-whipped-cream-and-cup-of.webp?a=1&b=1&s=612x612&w=0&k=20&c=rZeenf8ug-wmxzCf23jPfeUJW5QHuQZQvql8jYnv5GQ=",
       "IsWeekly": "FALSE"
     },
@@ -52,7 +52,7 @@
       "Category": "Cakes & Sweet Confections",
       "Name": "Chocolate & Cookies",
       "Description": "Belgian fudge cakes, popsicles, and sugar cookies.",
-      "Price": 120.00,
+      "Price": 120,
       "Image": "https://images.unsplash.com/photo-1739901798963-52aa95b1f83e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVuaWNvcm4lMjBjb29raWV8ZW58MHx8MHx8fDA%3D",
       "IsWeekly": "FALSE"
     },
@@ -60,7 +60,7 @@
       "Category": "Party Appetizers",
       "Name": "Cheese Domes & Platters",
       "Description": "Curated artisan cheese boards, gourmet crackers, dips, chips, and grazing spreads.",
-      "Price": 150.00,
+      "Price": 150,
       "Image": "https://images.unsplash.com/photo-1589881210718-42da05899fe4?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "IsWeekly": "FALSE"
     },
@@ -68,7 +68,7 @@
       "Category": "Party Appetizers",
       "Name": "Baked Pasta & Poppers",
       "Description": "Creamy baked pasta trays, crispy chicken nuggets, and gooey cheese poppers.",
-      "Price": 90.00,
+      "Price": 90,
       "Image": "https://plus.unsplash.com/premium_photo-1677000666741-17c3c57139a2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGFzdGF8ZW58MHx8MHx8fDA%3D",
       "IsWeekly": "FALSE"
     },
@@ -76,7 +76,7 @@
       "Category": "Party Appetizers",
       "Name": "Gourmet Party Wraps",
       "Description": "Sliced tortilla wraps and stuffed rolls loaded with fresh fillings and sauces.",
-      "Price": 80.00,
+      "Price": 80,
       "Image": "https://images.unsplash.com/photo-1760888548893-bc2f7e09e972?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "IsWeekly": "FALSE"
     },
@@ -84,7 +84,7 @@
       "Category": "Street Snacks",
       "Name": "Chole Kulcha Station",
       "Description": "Spiced tangy chickpea curry served with fluffy, butter-toasted soft kulchas.",
-      "Price": 85.00,
+      "Price": 85,
       "Image": "https://media.istockphoto.com/id/1335023693/photo/chole-kulche.webp?a=1&b=1&s=612x612&w=0&k=20&c=EECxa-PyB22fMX2lMq1BzUTkFh8JTFoLObzApCL9iuI=",
       "IsWeekly": "FALSE"
     },
@@ -92,7 +92,7 @@
       "Category": "Street Snacks",
       "Name": "DIY Pani Puri Bar",
       "Description": "Crispy puris, potato filling, sweet tamarind chutney, and chilled mint water.",
-      "Price": 95.00,
+      "Price": 95,
       "Image": "https://media.istockphoto.com/id/1314329942/photo/goal-gappa-or-pani-puri.webp?a=1&b=1&s=612x612&w=0&k=20&c=gipl8gjcid4yNp9cIjVEvhyAFdlFyplwGXYgRv0jdoI=",
       "IsWeekly": "FALSE"
     },
@@ -100,7 +100,7 @@
       "Category": "Street Snacks",
       "Name": "Baked Vada Pav Sliders",
       "Description": "Healthy oven-baked potato fritter sliders tucked in soft buns with garlic chutney.",
-      "Price": 75.00,
+      "Price": 75,
       "Image": "https://plus.unsplash.com/premium_photo-1672639601872-eeceb0c5c522?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFrZWQlMjB2YWRhcGF2fGVufDB8fDB8fHww",
       "IsWeekly": "FALSE"
     },
@@ -108,7 +108,7 @@
       "Category": "Signature Biryanis",
       "Name": "Chicken / Mutton Dum Biryani",
       "Description": "Long-grain basmati rice layered with succulent tender meat, saffron, and slow-cooked in a sealed pot.",
-      "Price": 130.00,
+      "Price": 130,
       "Image": "https://media.istockphoto.com/id/2254897359/photo/homemade-delicious-chicken-biriyani-served-in-cast-iron-pan.webp?a=1&b=1&s=612x612&w=0&k=20&c=IieK3z-KHQfURK6sgMHHOcdUZybz1huTK14ljevuz8k=",
       "IsWeekly": "FALSE"
     },
@@ -116,7 +116,7 @@
       "Category": "Signature Biryanis",
       "Name": "Shahi Paneer & Veg Biryani",
       "Description": "Aromatic rice loaded with marinated paneer cubes, garden vegetables, fried onions, and mint.",
-      "Price": 110.00,
+      "Price": 110,
       "Image": "https://images.unsplash.com/photo-1642821373181-696a54913e93?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGFuZWVyJTIwYmlyeWFuaXxlbnwwfHwwfHx8MA%3D%3D",
       "IsWeekly": "FALSE"
     }
